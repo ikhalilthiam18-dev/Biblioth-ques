@@ -14,7 +14,13 @@ SECRET_KEY = os.environ.get(
 
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    ".vercel.app",
+    "biblioth-ques.vercel.app",
+    "www.biblioth-ques.vercel.app",
+]
 
 if not DEBUG:
     ALLOWED_HOSTS += [
@@ -213,3 +219,4 @@ SPECTACULAR_SETTINGS = {
 # DEFAULT
 # ======================
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
