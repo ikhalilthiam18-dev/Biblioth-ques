@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}API Bibliothèque{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+  <style>
+    /* Overrides for DRF browsable API */
+    .content-main { background: var(--noir-carte); border: 1px solid var(--noir-bord); border-radius: var(--radius-lg); padding: 2rem; margin: 2rem auto; max-width: 960px; }
+    pre { background: rgba(0,0,0,0.4); border: 1px solid var(--noir-bord); border-radius: var(--radius); padding: 1rem; color: var(--creme); font-size: 0.85rem; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th { background: rgba(201,168,76,0.1); color: var(--or-clair); padding: 10px 14px; text-align: left; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; }
+    td { padding: 10px 14px; border-bottom: 1px solid var(--noir-bord); color: var(--gris-clair); font-size: 0.875rem; }
+    tr:last-child td { border-bottom: none; }
+    .btn, button, input[type=submit] { background: linear-gradient(135deg, var(--or), var(--or-fonce)); color: var(--noir) !important; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+    button:hover, input[type=submit]:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201,168,76,0.4); }
+    input, select, textarea { background: rgba(0,0,0,0.3); border: 1px solid var(--noir-bord); color: var(--creme); padding: 8px 12px; border-radius: 8px; font-family: 'DM Sans', sans-serif; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--or); }
+    .page-header { background: rgba(201,168,76,0.05); border-bottom: 1px solid rgba(201,168,76,0.15); padding: 1.5rem 2rem; display:flex; align-items:center; gap:1rem; }
+    .page-header h1 { font-family: 'Playfair Display',serif; color: var(--or-clair); font-size: 1.4rem; }
+    .request-info { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+    .label { color: var(--gris); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    a { color: var(--or) !important; }
+    a:hover { color: var(--or-clair) !important; }
+    .well { background: rgba(0,0,0,0.3); border: 1px solid var(--noir-bord); border-radius: var(--radius); padding: 1rem; }
+    .alert { background: rgba(224,82,82,0.1); border: 1px solid rgba(224,82,82,0.3); border-radius: 8px; padding: 1rem; color: #e05252; }
+    .alert-success { background: rgba(76,175,125,0.1); border-color: rgba(76,175,125,0.3); color: #4caf7d; }
+    nav.navbar ul { display:flex; gap:1.5rem; }
+    nav.navbar ul li a { color: var(--gris-clair) !important; font-size:0.85rem; }
+  </style>
+  {% block style %}{% endblock %}
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-brand">
+    <div class="navbar-logo">B</div>
+    <div>
+      <div class="navbar-title">Bibliothèque API</div>
+      <div class="navbar-subtitle">Interface navigable DRF</div>
+    </div>
+  </div>
+  <ul class="navbar-links">
+    <li><a href="/">Accueil</a></li>
+    <li><a href="/docs/">Swagger</a></li>
+    <li><a href="/redoc/">Redoc</a></li>
+    {% if user.is_authenticated %}
+      <li><a href="/api-auth/logout/?next=/">{{ user.username }}</a></li>
+    {% else %}
+      <li><a href="/api-auth/login/">Connexion</a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+{% block body %}
+<div class="content-main">
+  {% block breadcrumbs %}{% endblock %}
+  {% block content %}{% endblock %}
+</div>
+{% endblock %}
+
+</body>
+</html>

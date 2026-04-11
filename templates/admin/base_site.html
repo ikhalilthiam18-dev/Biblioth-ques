@@ -1,0 +1,117 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | Bibliothèque Admin{% endblock %}
+
+{% block branding %}
+<div id="site-name" style="display:flex;align-items:center;gap:12px;">
+  <div style="width:36px;height:36px;background:linear-gradient(135deg,#c9a84c,#8a6f2e);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-weight:bold;color:#0a0a0f;font-size:18px;flex-shrink:0;">B</div>
+  <div>
+    <a href="{% url 'admin:index' %}" style="font-family:'Georgia',serif;font-size:1.15rem;color:#e8c97a !important;text-decoration:none;font-weight:600;">Bibliothèque</a>
+    <div style="font-size:0.65rem;color:#6b7280;letter-spacing:0.1em;text-transform:uppercase;margin-top:1px;">Administration</div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #c9a84c;
+    --primary-dark: #8a6f2e;
+    --secondary: #e8c97a;
+    --bg: #0a0a0f;
+    --bg-card: #12121a;
+    --border: #1e1e2e;
+    --text: #f5f0e8;
+    --muted: #6b7280;
+  }
+
+  body, #content, .colMS { background: var(--bg) !important; color: var(--text) !important; font-family: 'DM Sans', sans-serif !important; }
+
+  #header { background: rgba(10,10,15,0.98) !important; border-bottom: 1px solid rgba(201,168,76,0.25) !important; padding: 12px 20px !important; }
+
+  #branding { display: flex; align-items: center; }
+
+  #user-tools { color: var(--muted) !important; font-size: 0.8rem; }
+  #user-tools a { color: var(--primary) !important; }
+
+  #nav-global { background: rgba(18,18,26,0.95) !important; border-bottom: 1px solid var(--border) !important; }
+  #nav-global a { color: var(--muted) !important; }
+  #nav-global a:hover { color: var(--primary) !important; }
+
+  .module { background: var(--bg-card) !important; border: 1px solid var(--border) !important; border-radius: 12px !important; overflow: hidden !important; margin-bottom: 1.5rem !important; }
+
+  .module h2, .module caption {
+    background: rgba(201,168,76,0.08) !important;
+    color: var(--secondary) !important;
+    font-family: 'Playfair Display', serif !important;
+    font-size: 1rem !important;
+    padding: 14px 18px !important;
+    border-bottom: 1px solid rgba(201,168,76,0.15) !important;
+    font-weight: 600 !important;
+  }
+
+  table thead th { background: rgba(201,168,76,0.06) !important; color: var(--muted) !important; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid var(--border) !important; }
+
+  table tbody tr:hover td { background: rgba(201,168,76,0.04) !important; }
+  table tbody tr td { border-bottom: 1px solid var(--border) !important; color: var(--text) !important; }
+
+  a { color: var(--primary) !important; }
+  a:hover { color: var(--secondary) !important; }
+
+  .button, input[type=submit], .submit-row input {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark)) !important;
+    color: #0a0a0f !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    padding: 9px 20px !important;
+    font-family: 'DM Sans', sans-serif !important;
+    transition: all 0.2s !important;
+  }
+  .button:hover, input[type=submit]:hover { box-shadow: 0 4px 16px rgba(201,168,76,0.35) !important; transform: translateY(-1px) !important; }
+
+  .deletelink { background: rgba(224,82,82,0.15) !important; color: #e05252 !important; border: 1px solid rgba(224,82,82,0.3) !important; }
+
+  .submit-row { background: var(--bg-card) !important; border-top: 1px solid var(--border) !important; border-radius: 0 0 12px 12px !important; }
+
+  fieldset { background: var(--bg-card) !important; border: 1px solid var(--border) !important; border-radius: 10px !important; }
+  fieldset h2 { color: var(--primary) !important; font-family: 'Playfair Display', serif !important; }
+
+  input[type=text], input[type=password], input[type=email], input[type=number], select, textarea {
+    background: rgba(0,0,0,0.4) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text) !important;
+    border-radius: 8px !important;
+    font-family: 'DM Sans', sans-serif !important;
+    padding: 8px 12px !important;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--primary) !important; outline: none !important; box-shadow: 0 0 0 2px rgba(201,168,76,0.15) !important; }
+
+  #changelist-filter { background: var(--bg-card) !important; border-left: 1px solid var(--border) !important; }
+  #changelist-filter h2 { background: rgba(201,168,76,0.08) !important; color: var(--secondary) !important; font-family: 'Playfair Display', serif !important; border-bottom: 1px solid var(--border) !important; }
+  #changelist-filter h3 { color: var(--muted) !important; font-size: 0.7rem !important; text-transform: uppercase !important; letter-spacing: 0.1em !important; }
+  #changelist-filter li.selected a { color: var(--primary) !important; font-weight: 600 !important; }
+
+  .paginator { color: var(--muted) !important; }
+  .paginator a { color: var(--primary) !important; }
+
+  #content-main { padding: 1.5rem 0 !important; }
+
+  .breadcrumbs { background: transparent !important; color: var(--muted) !important; border-bottom: 1px solid var(--border) !important; font-size: 0.8rem !important; }
+  .breadcrumbs a { color: var(--primary) !important; }
+
+  .errornote { background: rgba(224,82,82,0.1) !important; border: 1px solid rgba(224,82,82,0.3) !important; border-radius: 8px !important; color: #e05252 !important; }
+  .successnote { background: rgba(76,175,125,0.1) !important; border: 1px solid rgba(76,175,125,0.3) !important; color: #4caf7d !important; border-radius: 8px !important; }
+
+  #result_list { border-radius: 0 !important; }
+
+  #toolbar { background: rgba(18,18,26,0.8) !important; border: 1px solid var(--border) !important; border-radius: 10px !important; margin-bottom: 1rem !important; }
+  #toolbar input { background: rgba(0,0,0,0.4) !important; border: 1px solid var(--border) !important; color: var(--text) !important; border-radius: 8px !important; }
+
+  .help { color: var(--muted) !important; font-size: 0.8rem !important; }
+</style>
+{% endblock %}

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Bibliothèque — Documentation</title>
+  <meta name="description" content="API REST pour la gestion d'une bibliothèque numérique — livres, auteurs, emprunts.">
+  {% load static %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="navbar-brand">
+    <div class="navbar-logo">B</div>
+    <div>
+      <div class="navbar-title">Bibliothèque API</div>
+      <div class="navbar-subtitle">v1.0.0 — REST Framework</div>
+    </div>
+  </div>
+  <ul class="navbar-links">
+    <li><a href="#endpoints">Endpoints</a></li>
+    <li><a href="#auth">Authentification</a></li>
+    <li><a href="/docs/">Swagger UI</a></li>
+    <li><a href="/redoc/">Redoc</a></li>
+    <li><a href="/admin/" class="btn btn-outline" style="padding: 8px 18px; font-size:0.8rem;">Admin</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-eyebrow">API REST en ligne</div>
+  <h1>API <span>Bibliothèque</span><br>Numérique</h1>
+  <p>Une API complète pour gérer livres, auteurs, tags et emprunts — avec authentification JWT et documentation interactive.</p>
+  <div class="hero-actions">
+    <a href="/docs/" class="btn btn-primary">
+      📖 Explorer avec Swagger
+    </a>
+    <a href="/redoc/" class="btn btn-outline">
+      Docs Redoc
+    </a>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-number">4</span>
+    <div class="stat-label">Ressources</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number">20+</span>
+    <div class="stat-label">Endpoints</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number">JWT</span>
+    <div class="stat-label">Auth sécurisée</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number">REST</span>
+    <div class="stat-label">Standard</div>
+  </div>
+</div>
+
+<!-- ===== ENDPOINTS ===== -->
+<section class="section" id="endpoints">
+  <div class="section-title">Ressources disponibles</div>
+  <p class="section-subtitle">Toutes les routes de l'API — préfixe <code style="color:var(--or);background:rgba(201,168,76,0.1);padding:2px 8px;border-radius:4px;font-size:0.85em;">/api/</code></p>
+  <div class="section-divider"></div>
+
+  <div class="endpoints-grid">
+
+    <!-- LIVRES -->
+    <div class="endpoint-card fade-up">
+      <div class="card-icon">📚</div>
+      <div class="card-title">Livres</div>
+      <p class="card-desc">Gestion complète du catalogue — CRUD, filtres avancés, pagination, recherche plein texte.</p>
+      <div class="card-endpoints">
+        <div class="endpoint-pill">
+          <span class="method-badge method-GET">GET</span>
+          <span class="endpoint-path">/api/livres/</span>
+        </div>
+        <div class="endpoint-pill">
+          <span class="method-badge method-POST">POST</span>
+          <span class="endpoint-path">/api/livres/</span>
+        </div>
+        <div class="endpoint-pill">
+          <span class="method-badge method-GET">GET</span>
+          <span class="endpoint-path">/api/livres/{id}/</span>
+        </div>
+        <div class="endpoint-pill">
+          <span class="method-badge method-PUT">PUT</span>
+          <span class="endpoint-path">/api/livres/{id}/</span>
+        </div>
+        <div class="endpoint-pill">
+          <span class="method-badge method-DELETE">DELETE</span>
+          <span class="endpoint-path">/api/livres/{id}/</span>
+        </div>
+        <div class="endpoint-pill">
+          <span class="method-badge method-GET">GET</span>
+          <span class="endpoint-path">/api/livres/disponibles/</span>
+        </div>
+        <div class="endpoint-pill">
+          <span class="method-badge method-POST">POST</span>
+          <span class="endpoint-path">/api/livres/{id}/emprunter/</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUTEURS -->
+    <div class="endpoint-card fade-up">
+      <div class="card-icon">✍️</div>
+      <div class="card-title">Auteurs</div>
+      <p class="card-desc">Gestion des auteurs avec biographies et nationalités. Accès à la liste des livres par auteur.</p>
+      <div class="card-endpoints">
+        <div class="endpoint-pill">
+          <span class="method-badge method-GET">GET</span>
+          <span class="endpoint-path">/api/auteurs/</span>
+        </div>
+        <div class="endpoint-pill">
+          <span class="method-badge method-POST">POST</span>
+          <span class="endpoint-path">/api/auteurs/</span>
+        </div>
+        <div class="endpoint-pill">
+          <span class="method-badge method-GET">GET</span>
+          <span class="endpoint-path">/api/auteurs/{id}/</span>
+        </div>
+        <div class="endpoint-pill">
+          <span class="method-badge method-PUT">PUT</span>
+          <span class="endpoint-path">/api/auteurs/{id}/</span>
+        </div>
+        <div class="endpoint-pill">
+          <span class="method-badge method-GET">GET</span>
+          <span class="endpoint-path">/api/auteurs/{id}/livres/</span>
+        </div>
+        <div class="endpoint-pill">
+          <span class="method-badge method-GET">GET</span>
+          <span class="endpoint-path">/api/auteurs/stats/</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPRUNTS -->
+    <div class="endpoint-card fade-up">
+      <div class="card-icon">🔖</div>
+      <div class="card-title">Emprunts</div>
+      <p class="card-desc">Suivi des emprunts en cours. Chaque utilisateur accède uniquement à ses propres emprunts.</p>
+      <div class="card-endpoints">
+        <div class="endpoint-pill">
+          <span class="method-badge method-GET">GET</span>
+          <span class="endpoint-path">/api/emprunts/</span>
+        </div>
+        <div class="endpoint-pill">
+          <span class="method-badge method-POST">POST</span>
+          <span class="endpoint-path">/api/emprunts/</span>
+        </div>
+        <div class="endpoint-pill">
+          <span class="method-badge method-GET">GET</span>
+          <span class="endpoint-path">/api/emprunts/{id}/</span>
+        </div>
+        <div class="endpoint-pill">
+          <span class="method-badge method-POST">POST</span>
+          <span class="endpoint-path">/api/emprunts/{id}/rendre/</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAGS -->
+    <div class="endpoint-card fade-up">
+      <div class="card-icon">🏷️</div>
+      <div class="card-title">Tags & Auth</div>
+      <p class="card-desc">Système de tags pour catégoriser les livres. Authentification JWT pour sécuriser les opérations.</p>
+      <div class="card-endpoints">
+        <div class="endpoint-pill">
+          <span class="method-badge method-GET">GET</span>
+          <span class="endpoint-path">/api/tags/</span>
+        </div>
+        <div class="endpoint-pill">
+          <span class="method-badge method-POST">POST</span>
+          <span class="endpoint-path">/api/tags/</span>
+        </div>
+        <div class="endpoint-pill">
+          <span class="method-badge method-POST">POST</span>
+          <span class="endpoint-path">/api/auth/token/</span>
+        </div>
+        <div class="endpoint-pill">
+          <span class="method-badge method-POST">POST</span>
+          <span class="endpoint-path">/api/auth/token/refresh/</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== FILTRES ===== -->
+<section class="section">
+  <div class="section-title">Filtres & Recherche</div>
+  <p class="section-subtitle">Paramètres disponibles sur <code style="color:var(--or);background:rgba(201,168,76,0.1);padding:2px 8px;border-radius:4px;font-size:0.85em;">GET /api/livres/</code></p>
+  <div class="section-divider"></div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;">
+
+    <div class="endpoint-card" style="padding:1.25rem;">
+      <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gris);margin-bottom:0.75rem;">Recherche textuelle</div>
+      <code style="color:var(--or);font-size:0.85rem;">?search=victor hugo</code>
+      <p style="color:var(--gris);font-size:0.8rem;margin-top:0.5rem;">Cherche dans titre, auteur, ISBN</p>
+    </div>
+
+    <div class="endpoint-card" style="padding:1.25rem;">
+      <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gris);margin-bottom:0.75rem;">Catégorie</div>
+      <code style="color:var(--or);font-size:0.85rem;">?categorie=roman</code>
+      <p style="color:var(--gris);font-size:0.8rem;margin-top:0.5rem;">roman, essai, poesie, bd, science, histoire</p>
+    </div>
+
+    <div class="endpoint-card" style="padding:1.25rem;">
+      <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gris);margin-bottom:0.75rem;">Année</div>
+      <code style="color:var(--or);font-size:0.85rem;">?annee_min=1900&annee_max=2024</code>
+      <p style="color:var(--gris);font-size:0.8rem;margin-top:0.5rem;">Filtrer par plage d'années de publication</p>
+    </div>
+
+    <div class="endpoint-card" style="padding:1.25rem;">
+      <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gris);margin-bottom:0.75rem;">Tri & Pagination</div>
+      <code style="color:var(--or);font-size:0.85rem;">?ordering=-annee_publication&size=20</code>
+      <p style="color:var(--gris);font-size:0.8rem;margin-top:0.5rem;">Tri multi-champs, jusqu'à 100 items/page</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== AUTH ===== -->
+<section class="section" id="auth">
+  <div class="section-title">Authentification JWT</div>
+  <p class="section-subtitle">Sécurisez vos requêtes avec un token d'accès Bearer</p>
+  <div class="section-divider"></div>
+
+  <div class="auth-box">
+    <div class="auth-info">
+      <h3>🔐 Obtenir un token</h3>
+      <p style="margin-bottom:1rem;">Envoyez vos identifiants à <code style="color:var(--or);">/api/auth/token/</code> pour recevoir un <strong>access token</strong> (60 min) et un <strong>refresh token</strong> (24h).</p>
+      <p>Incluez le token dans chaque requête protégée dans le header <code style="color:var(--or);">Authorization</code>.</p>
+      <br>
+      <h3 style="margin-top:1rem;">⚡ Permissions</h3>
+      <ul style="color:var(--gris);font-size:0.875rem;list-style:none;margin-top:0.75rem;display:flex;flex-direction:column;gap:0.5rem;">
+        <li>✅ <strong>Lecture</strong> — Accès public (livres, auteurs)</li>
+        <li>🔐 <strong>Création</strong> — Utilisateur authentifié</li>
+        <li>✏️ <strong>Modification</strong> — Propriétaire ou admin</li>
+        <li>🗑️ <strong>Suppression</strong> — Propriétaire ou admin</li>
+      </ul>
+    </div>
+    <div>
+      <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gris);margin-bottom:0.75rem;">Obtenir un token</div>
+      <div class="code-block">
+<span class="comment"># POST /api/auth/token/</span>
+{
+  <span class="key">"username"</span>: <span class="value">"votre_username"</span>,
+  <span class="key">"password"</span>: <span class="value">"votre_mot_de_passe"</span>
+}
+
+<span class="comment"># Réponse</span>
+{
+  <span class="key">"access"</span>: <span class="value">"eyJ0eXAiOiJKV1Qi..."</span>,
+  <span class="key">"refresh"</span>: <span class="value">"eyJ0eXAiOiJKV1Qi..."</span>
+}
+      </div>
+
+      <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gris);margin: 1.25rem 0 0.75rem;">Utiliser le token</div>
+      <div class="code-block">
+<span class="comment"># Header de requête</span>
+Authorization: Bearer <span class="value">eyJ0eXAiOiJKV1Qi...</span>
+
+<span class="comment"># Exemple POST /api/livres/</span>
+curl -X POST <span class="url">/api/livres/</span> \
+  -H <span class="value">"Authorization: Bearer {token}"</span> \
+  -H <span class="value">"Content-Type: application/json"</span> \
+  -d '{"titre": "...", "isbn": "...", "auteur": 1}'
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <span class="footer-brand">📚 Bibliothèque API</span>
+  <p>Construit avec Django REST Framework &bull; Python 3.12 &bull; JWT Auth</p>
+  <div class="footer-links">
+    <a href="/docs/">Documentation Swagger</a>
+    <a href="/redoc/">Documentation Redoc</a>
+    <a href="/api/">API Browsable</a>
+    <a href="/admin/">Administration</a>
+    <a href="/api/schema/">Schéma OpenAPI</a>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer pour animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.endpoint-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'all 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

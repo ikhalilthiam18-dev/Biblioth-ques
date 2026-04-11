@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "bibliotheque_project/wsgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.12"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "bibliotheque_project/wsgi.py"
+    }
+  ],
+  "env": {
+    "DEBUG": "False",
+    "DJANGO_SETTINGS_MODULE": "bibliotheque_project.settings"
+  }
+}
