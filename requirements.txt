@@ -21,7 +21,7 @@ django-filter==25.2
 djangorestframework==3.17.1
 djangorestframework_simplejwt==5.5.1
 drf-spectacular==0.29.0
-drf-spectacular-sidecar
+drf-spectacular-sidecar==2026.4.1
 et_xmlfile==2.0.0
 flatbuffers==25.12.19
 fonttools==4.60.1
