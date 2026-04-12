@@ -14,10 +14,10 @@ if not SECRET_KEY:
 
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS_ENV = os.environ.get(
-    'ALLOWED_HOSTS',
-    'localhost,127.0.0.1'
-)
+ALLOWED_HOSTS = os.environ.get(
+    "ALLOWED_HOSTS",
+    "localhost,127.0.0.1,.vercel.app,biblioth-ques.vercel.app"
+).split(",")
 
 ALLOWED_HOSTS = [h.strip() for h in ALLOWED_HOSTS_ENV.split(',') if h.strip()]
 ALLOWED_HOSTS += ["*.onrender.com"]
