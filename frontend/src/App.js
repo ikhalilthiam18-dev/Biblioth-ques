@@ -1,25 +1,23 @@
-import { useEffect, useState } from "react";
-import API from "./api";
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
-  const [books, setBooks] = useState([]);
-
-  useEffect(() => {
-    API.get("books/")
-      .then((res) => setBooks(res.data.results))
-      .catch((err) => console.log(err));
-  }, []);
-
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>📚 Bibliothèque</h1>
-
-      {books.map((book) => (
-        <div key={book.id}>
-          <h3>{book.title}</h3>
-          <p>{book.author}</p>
-        </div>
-      ))}
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
