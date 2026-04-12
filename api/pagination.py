@@ -5,3 +5,4 @@ class StandardPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = 'size'
     max_page_size = 100
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
